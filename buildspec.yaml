@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "i m in pre build phase"    
+      - echo $CODEBUILD_BUILD_NUMBER
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 034362060516.dkr.ecr.ap-south-1.amazonaws.com
+      
+
+  build:
+    commands:
+      - echo "i m in build phase"
+      - mvn clean install
+      - ls -l target/
+      - docker build . -t myspringapp:v$CODEBUILD_BUILD_NUMBER
+      - docker images
+
+
+  post_build:
+    commands:
+      - echo "i m in post build phase"
+      - docker tag   myspringapp:v$CODEBUILD_BUILD_NUMBER  034362060516.dkr.ecr.ap-south-1.amazonaws.com/myspringapp:v$CODEBUILD_BUILD_NUMBER
+      - docker tag   myspringapp:v$CODEBUILD_BUILD_NUMBER  034362060516.dkr.ecr.ap-south-1.amazonaws.com/myspringapp:latest
+      - docker push 034362060516.dkr.ecr.ap-south-1.amazonaws.com/myspringapp:v$CODEBUILD_BUILD_NUMBER
+      - docker push 034362060516.dkr.ecr.ap-south-1.amazonaws.com/myspringapp:latest
+      - printf '[{"name":"myspring","imageUri":"%s"}]' 034362060516.dkr.ecr.ap-south-1.amazonaws.com/myspringapp:v$CODEBUILD_BUILD_NUMBER > imagedefinitions.json
+      - cat imagedefinitions.json
+
+artifacts:
+  files:
+    - '**/*'
