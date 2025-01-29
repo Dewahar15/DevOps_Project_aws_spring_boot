@@ -65,7 +65,7 @@ public class CourseController {
 
     @GetMapping("/welcome")
     public String greetings() {
-        return "Hello , Welcome to Course Page using DevOps  ";
+        return "Hello all , Welcome to Course Page using DevOps  ";
     }
 
 
