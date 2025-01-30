@@ -3,10 +3,16 @@ CICD - flow
 
 # DevOps workflow for deploying a Spring Boot application 
 __Using following steps:__
-* Spring Boot App: Develop the application using Java.
-* GitHub: Store and manage the source code.
-* Maven: Build and package the application.
-* Docker: Containerize the application.
-* Jenkins (CI/CD): Automate the build and deployment process through pipelines.
-* Kubernetes: Deploy and manage the containerized application.
-* EKS (AWS): Use Amazon's Elastic Kubernetes Service for orchestration and scaling.
+* __Spring Boot App:__ Develop the application using Java.
+* __GitHub:__ Store and manage the source code.
+* __Maven:__ Build and package the application.
+* __Docker:__ Containerize the application.
+* __Jenkins (CI/CD):__ Automate the build and deployment process through pipelines.
+* __Kubernetes:__ Deploy and manage the containerized application.
+* __EKS (AWS):__ Use Amazon's Elastic Kubernetes Service for orchestration and scaling.
+
+launch a OS for a Jenkins on AWS Cloud
+![Image](https://github.com/user-attachments/assets/cc241b98-e375-4c32-a2a8-35081bb8c0de)
+
+
+
